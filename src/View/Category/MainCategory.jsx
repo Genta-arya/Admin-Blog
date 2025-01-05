@@ -11,6 +11,7 @@ import EditModal from "./components/EditModalCategory";
 import DeleteModal from "./components/DeleteModalCategory";
 import { modalTypes } from "../../constants/Constants";
 import CreateModalCategory from "./components/CreateModalCategory";
+import Search from "../../components/Search";
 
 const MainCategory = () => {
   const dummyData = [
@@ -25,6 +26,8 @@ const MainCategory = () => {
   const [selectedId, setSelectedId] = React.useState(null);
   const [selectedName, setSelectedName] = React.useState(null);
 
+  const [searchTerm, setSearchTerm] = React.useState('');
+
   const handleOpenModal = (type, id, name) => {
     setModalType(type);
     setSelectedId(id);
@@ -32,16 +35,25 @@ const MainCategory = () => {
     setSelectedName(name);
   };
 
+  const filteredData = dummyData.filter((data) =>
+    data.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <Tools title={"Category"} />
       <ContainerLayout>
+
+        <div className="flex justify-between items-center gap-4">
+
         <Button
           onClick={() => handleOpenModal(modalTypes.create, null, null)}
           icon={<FaPlus />}
           title={"Create Category"}
           style={"bg-orange-400"}
         />
+        <Search placeholder={"Search Category"} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        </div>
 
         <Table>
           <Thead>
@@ -53,7 +65,7 @@ const MainCategory = () => {
           </Thead>
 
           <Tbody>
-            {dummyData.map((data, index) => (
+            {filteredData.map((data, index) => (
               <tr key={data.id}>
                 <td className="px-4 py-2 border border-gray-200">
                   {index + 1}
@@ -62,7 +74,7 @@ const MainCategory = () => {
                   className="px-4 py-2 border border-gray-200 break-words hover:cursor-pointer hover:underline"
                   title="Double Click to Edit"
                   onDoubleClick={() =>
-                    handleOpenModal(modalTypes.edit, data.id, data.name)
+                    handleOpenModal(modalTypes.edit, data.id, data)
                   }
                 >
                   {data.name}

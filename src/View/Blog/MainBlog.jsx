@@ -6,10 +6,11 @@ import { FaPencil } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import ListBlog from "./components/ListBlog";
 import { FaSearch } from "react-icons/fa";
+import Search from "../../components/Search";
 
 const MainBlog = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState(""); // State untuk input pencarian
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   return (
     <>
@@ -22,18 +23,8 @@ const MainBlog = () => {
             title={"Write Blog"}
             style={"bg-orange-400"}
           />
-          <div className="relative w-full max-w-sm">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <FaSearch className="text-gray-400" />
-            </span>
-            <input
-              type="text"
-              placeholder="Search Title..."
-              className="w-full pl-10 pr-4 py-2 border rounded-lg shadow-sm focus:outline-none   placeholder:text-gray-500 text-black"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          <Search placeholder={"Search Blog"} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+         
         </div>
 
         <ListBlog search={searchTerm} />

@@ -21,8 +21,7 @@ const EditModalCategory = ({ isModalOpen, setIsModalOpen, title, value }) => {
   };
 
   const handleSubmit = () => {
-    console.log("Data yang diubah:", inputValue);
-    console.log("edit ID", value.id);
+  
     if (!inputValue)
       return toast.info("Category cannot be empty", { duration: 4000 });
     toast.success("Category successfully updated", { duration: 4000 });
