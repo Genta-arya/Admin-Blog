@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import Sidebar from "./Sidebar";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +31,11 @@ const Navbar = () => {
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    toast.info("Change Theme , Please wait...", {
+      duration: 2000,
+      onAutoClose: () => setIsDarkMode(!isDarkMode),
+      
+    });
   };
 
   return (
@@ -52,7 +57,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <div className="">
               <button onClick={toggleMenu} className="" title="Menu">
-                {isMenuOpen ? null: <FaBars size={20} />}
+                {isMenuOpen ? null : <FaBars size={20} />}
               </button>
             </div>
           </div>
@@ -63,7 +68,11 @@ const Navbar = () => {
               title="Theme"
               className=" p-2 rounded-full border-gray-300 dark:border-gray-600"
             >
-              {isDarkMode ? <FaSun color="yellow" size={20} /> : <FaMoon color="#1D4ED8" />}
+              {isDarkMode ? (
+                <FaSun color="yellow" size={20} />
+              ) : (
+                <FaMoon color="#1D4ED8" />
+              )}
             </button>
           </div>
         </div>

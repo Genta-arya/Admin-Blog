@@ -45,7 +45,7 @@ const route = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <ThemeProvider>
-    <Toaster richColors position="bottom-center" />
+    <Toaster richColors position="bottom-center" toastOptions={{style: { fontSize: "14px",}, closeButton:true} } />
     <RouterProvider router={route} />
   </ThemeProvider>
 );
