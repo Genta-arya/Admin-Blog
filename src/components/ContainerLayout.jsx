@@ -32,7 +32,7 @@ const ContainerLayout = ({ children }) => {
 
   return (
     <div className="flex justify-center relative">
-      <div className="w-full lg:max-w-7xl md:max-w-3xl">{children}</div>
+      <div className="w-full  p-4">{children}</div>
 
       {showButton && (
         <ScrollTop  scrollToTop={scrollToTop} />

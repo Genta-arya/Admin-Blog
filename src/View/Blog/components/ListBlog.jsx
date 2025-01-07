@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { PulseLoader } from "react-spinners";
 
 const ListBlog = ({ search }) => {
-  const [blogs, setBlogs] = useState([]); // Menyimpan data blog
-  const [loading, setLoading] = useState(false); // Status loading saat memuat data
-  const [page, setPage] = useState(1); // Halaman untuk pengambilan data
-  const [hasMore, setHasMore] = useState(true); // Menandakan jika masih ada data untuk diambil
+  const [blogs, setBlogs] = useState([]); 
+  const [loading, setLoading] = useState(false); 
+  const [page, setPage] = useState(1); 
+  const [hasMore, setHasMore] = useState(true); 
 
-  // Mengambil data blog
+
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
@@ -20,9 +20,9 @@ const ListBlog = ({ search }) => {
         );
         const data = await response.json();
         if (data.length < 10) {
-          setHasMore(false); // Jika data yang didapatkan kurang dari 10, berarti sudah tidak ada data lagi
+          setHasMore(false); 
         }
-        setBlogs((prevBlogs) => [...prevBlogs, ...data]); // Menambahkan data baru ke daftar blog
+        setBlogs((prevBlogs) => [...prevBlogs, ...data]); 
       } catch (error) {
         console.error("Gagal mengambil data blog:", error);
       } finally {
@@ -31,9 +31,9 @@ const ListBlog = ({ search }) => {
     };
 
     fetchBlogs();
-  }, [page]); // Mengambil data setiap kali page berubah
+  }, [page]);
 
-  // Menyaring blog berdasarkan search term
+
   const filteredBlogs = blogs.filter((blog) =>
     blog.title.toLowerCase().includes(search.toLowerCase())
   );
@@ -42,7 +42,7 @@ const ListBlog = ({ search }) => {
     const bottom =
       e.target.scrollHeight === e.target.scrollTop + e.target.clientHeight;
     if (bottom && hasMore && !loading) {
-      setPage((prevPage) => prevPage + 1); // Memuat halaman berikutnya
+      setPage((prevPage) => prevPage + 1); 
     }
   };
 
@@ -53,7 +53,7 @@ const ListBlog = ({ search }) => {
       style={{ overflowY: "auto", maxHeight: "80vh" }}
     >
      
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 md:gap-6 gap-2 relative">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 md:gap-6 gap-2 relative">
           {filteredBlogs.map((blog, index) => (
             <motion.div
               key={blog.id}

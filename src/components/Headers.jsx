@@ -12,7 +12,7 @@ const Headers = () => {
           {/* cdn dummy profile */}
           <div className="flex gap-3 items-center"> 
             <img
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              src="https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg"
               alt="profile"
               onClick={() => navigate("/profile")}
               className="w-12 h-12 rounded-full hover:cursor-pointer"
